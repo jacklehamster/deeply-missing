@@ -9,4 +9,5 @@ Play it here: <https://jacklehamster.github.io/deeply-missing>
 Game, Graphics, and Music: Jack Le Hamster
 Song: Listen [here](https://tinyurl.com/2a9mtn4u)
 Sound Effects: Generated using [ZzFX](https://killedbyapixel.github.io/ZzFX/)
+Font used: [Vortigra](https://www.dafont.com/vortigra.font)
 Built with HTML5, WebGL, and JavaScript.

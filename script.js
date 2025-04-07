@@ -2388,11 +2388,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         dbox.id = "dbox";
         dbox.style.position = "absolute";
         dbox.style.fontSize = "30pt";
-        dbox.style.color = "red";
+        dbox.style.color = "#87cefa";
         dbox.style.bottom = "50px";
         dbox.style.width = "100%";
         dbox.style.textAlign = "center";
-        dbox.style.fontFamily = "monospace";
+        dbox.style.fontFamily = "TheFont";
         return dbox;
       })()
     );
