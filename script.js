@@ -1,8 +1,16 @@
 import { zzfx } from "https://esm.sh/zzfx";
+import { Newgrounds } from "https://esm.sh/medal-popup";
 
 const DEBUG = false;
 
 document.addEventListener("DOMContentLoaded", async function () {
+  const ng = new Newgrounds({
+    game: "Deeply Missing",
+    url: "https://www.newgrounds.com/portal/view/6587566",
+    key: "60029:A9A2Gh9m",
+    skey: "PdHysM38hrcqHiKIaFOYTQ==",
+  });
+  window.ng = ng;
   let audioPlayed = false;
   const audio = new Audio("deep-sadness.mp3");
   function playAudio(loop) {
@@ -521,6 +529,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   function checkCode(element) {
+    console.log(element.code);
     if (element.code === "SARAH") {
       findSarah(element);
     }
@@ -583,6 +592,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         setTimeout(() => {
           audioPlayed = false;
           playAudio(true);
+          ng.unlockMedal("It's over");
         }, 5000);
       }, 3000);
     }
@@ -858,6 +868,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           cell.onLand = undefined;
           scrollGoal = cell.scrollGoal;
         }
+        ng.unlockMedal("First trial");
       },
     },
     {
@@ -1304,6 +1315,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           cell.onLand = undefined;
           scrollGoal = cell.scrollGoal;
         }
+        ng.unlockMedal("Second trial");
       },
     },
 
@@ -1395,7 +1407,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         element.code = (element.code ?? "") + cell.letter;
         cell.color = cell.color === WHITE ? PINK : PURPLE;
         soundy();
-        checkCode(element.code);
+        checkCode(element);
       },
     },
     {
@@ -1411,7 +1423,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         element.code = (element.code ?? "") + cell.letter;
         cell.color = cell.color === WHITE ? PINK : PURPLE;
         soundy();
-        checkCode(element.code);
+        checkCode(element);
       },
     },
     {
@@ -1427,7 +1439,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         element.code = (element.code ?? "") + cell.letter;
         cell.color = cell.color === WHITE ? PINK : PURPLE;
         soundy();
-        checkCode(element.code);
+        checkCode(element);
       },
     },
     {
@@ -1509,6 +1521,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           cell.onLand = undefined;
           scrollGoal = cell.scrollGoal;
         }
+        ng.unlockMedal("Her name");
       },
     },
 
