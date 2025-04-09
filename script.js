@@ -1776,6 +1776,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   document.addEventListener("keydown", (event) => {
     keys[event.code] = true;
     playAudio();
+    event.preventDefault();
   });
   document.addEventListener("keyup", (event) => {
     delete keys[event.code];
