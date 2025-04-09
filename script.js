@@ -1,5 +1,5 @@
-import { zzfx } from "https://esm.sh/zzfx";
-import { Newgrounds } from "https://esm.sh/medal-popup";
+import { zzfx } from "./lib/zzfx.js";
+import { Newgrounds } from "./lib/ng/dist/index.js";
 
 const DEBUG = false;
 
