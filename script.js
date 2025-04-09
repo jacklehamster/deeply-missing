@@ -1635,58 +1635,62 @@ document.addEventListener("DOMContentLoaded", async function () {
   //   activate("find-sarah");
   // }, 3000);
 
-  const newCells = JSON.parse(localStorage.getItem("new-cells") ?? "[]");
-  for (let i = newCells.length - 1; i >= 0; i--) {
-    if (cells.find((c) => JSON.stringify(c) === JSON.stringify(newCells[i]))) {
-      newCells[i] = newCells[newCells.length - 1];
-      newCells.pop();
-    } else {
-      cells.push({ ...newCells[i] });
+  if (DEBUG) {
+    const newCells = JSON.parse(localStorage.getItem("new-cells") ?? "[]");
+    for (let i = newCells.length - 1; i >= 0; i--) {
+      if (
+        cells.find((c) => JSON.stringify(c) === JSON.stringify(newCells[i]))
+      ) {
+        newCells[i] = newCells[newCells.length - 1];
+        newCells.pop();
+      } else {
+        cells.push({ ...newCells[i] });
+      }
     }
-  }
-  localStorage.setItem("new-cells", JSON.stringify(newCells));
+    localStorage.setItem("new-cells", JSON.stringify(newCells));
 
-  if (newCells.length && DEBUG) {
-    const saveButton = document.body.appendChild(
-      document.createElement("button")
-    );
-    saveButton.id = "save-button";
-    saveButton.textContent = "SAVE";
-    saveButton.style.position = "absolute";
-    saveButton.style.top = "5px";
-    saveButton.style.right = "5px";
-    saveButton.addEventListener("click", () => {
-      // Convert newCells to pretty-printed JSON with 2 spaces indentation
-      const jsonString = JSON.stringify(
-        newCells.map((c) => {
-          const newC = { ...c };
-          delete newC.registered;
-          if (!newC.level) {
-            delete newC.level;
-          }
-          return newC;
-        }),
-        null,
-        2
+    if (newCells.length && DEBUG) {
+      const saveButton = document.body.appendChild(
+        document.createElement("button")
       );
+      saveButton.id = "save-button";
+      saveButton.textContent = "SAVE";
+      saveButton.style.position = "absolute";
+      saveButton.style.top = "5px";
+      saveButton.style.right = "5px";
+      saveButton.addEventListener("click", () => {
+        // Convert newCells to pretty-printed JSON with 2 spaces indentation
+        const jsonString = JSON.stringify(
+          newCells.map((c) => {
+            const newC = { ...c };
+            delete newC.registered;
+            if (!newC.level) {
+              delete newC.level;
+            }
+            return newC;
+          }),
+          null,
+          2
+        );
 
-      // Create a Blob with the JSON content
-      const blob = new Blob([jsonString], { type: "application/json" });
+        // Create a Blob with the JSON content
+        const blob = new Blob([jsonString], { type: "application/json" });
 
-      // Create a temporary URL for the Blob
-      const url = window.URL.createObjectURL(blob);
+        // Create a temporary URL for the Blob
+        const url = window.URL.createObjectURL(blob);
 
-      // Create a temporary link element to trigger download
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "newCells.json"; // Filename for the download
-      document.body.appendChild(link);
-      link.click();
+        // Create a temporary link element to trigger download
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "newCells.json"; // Filename for the download
+        document.body.appendChild(link);
+        link.click();
 
-      // Clean up
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    });
+        // Clean up
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    }
   }
 
   let sarah;
